@@ -12,7 +12,7 @@ Tensorflow implementation of [APE-GAN: Adversarial Perturbation Elimination with
 
 ## Usage
 
-To train a model with downloaded dataset:
+To train a model with mnist:
 
     $ python main.py --dataset mnist --train
     $ python main.py --dataset mnist --train --adversarial_path=./data/advData.npy --ground_truth_path=./data/gtData.npy
