@@ -34,17 +34,21 @@ the value is in the range of [0,1].
 ## Results
 ### mnist
 Adversarial example:
+
 ![result1](assets/mnist_adv.png)
 
 Reconstructed example by APE-GAN:
+
 ![result2](assets/mnist_APE-GAN.png)
 
 ### ImageNet
 
 Adversarial example:
+
 ![result3](assets/imageNet_adv.png)
 
 Reconstructed example by APE-GAN:
+
 ![result4](assets/imageNet_APE-GAN.png)
 
 ## Related works
