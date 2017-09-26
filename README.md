@@ -28,11 +28,11 @@ It is noteworthy that the adversarial samples cannot be
 saved in the form of picture, since discretizing the values
 from a real-numbered value to one of the 256 points seriously
 degrades the quality. Then it should be saved and
-loaded as float32. In addition, for each pixel, 
+loaded as float32 when training and test. In addition, for each pixel, 
 the value is in the range of [0,1].
 
 ## Results
-### mnist
+### Mnist
 Adversarial example:
 
 ![result1](assets/mnist_adv.png)
