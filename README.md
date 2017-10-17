@@ -21,15 +21,18 @@ To test with an existing model:
 
     $ python main.py --dataset mnist
     $ python main.py --dataset mnist --test_path=./data/testData.npy --save_path=./data/resAPE-GAN.npy
-    
-Or, you can use your own data by change the path of numpy.
+
+Or, you can use your own data by change the path of numpy. If you use the cifar10 and imageNet datasets, the input_height and output_height should be altered.
+
+For example:
+    $ python main.py --epoch=5 --dataset=cifar10 --input_height=32 --output_height=32 --train=True --adversarial_path=./data/cifarAdv.npy --ground_truth_path=./data/cifarGt.npy
 
 It is noteworthy that the adversarial samples cannot be
 saved in the form of picture, since discretizing the values
 from a real-numbered value to one of the 256 points seriously
 degrades the quality. Then it should be saved and
 loaded as float32 when training and test. In addition, for each pixel, 
-the value is in the range of [0,1].
+the value should be in the range of [-1,1].
 
 ## Results
 ### Mnist
