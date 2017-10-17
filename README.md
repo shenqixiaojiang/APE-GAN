@@ -25,6 +25,7 @@ To test with an existing model:
 Or, you can use your own data by change the path of numpy. If you use the cifar10 and imageNet datasets, the input_height and output_height should be altered.
 
 For example:
+
     $ python main.py --epoch=5 --dataset=cifar10 --input_height=32 --output_height=32 --train=True --adversarial_path=./data/cifarAdv.npy --ground_truth_path=./data/cifarGt.npy
 
 It is noteworthy that the adversarial samples cannot be
