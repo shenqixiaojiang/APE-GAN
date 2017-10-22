@@ -71,11 +71,15 @@ class DCGAN(object):
     self.checkpoint_dir = checkpoint_dir
     self.sample_dir = sample_dir
 
-    self.adv = self.load_adv_data()
-    self.c_dim = self.adv[0].shape[-1]
-    self.grayscale = (self.c_dim == 1)
-    self.gt = self.load_gt_data()
+    self.adv = np.load(self.adversarial_path)
     
+    if self.dataset_name == "mnist":
+	self.c_dim = 1
+    else:
+	self.c_dim = 3
+    
+    self.grayscale = (self.c_dim == 1)
+    self.gt = np.load(self.ground_truth_path) 
     self.build_model()
 
   def build_model(self):
@@ -117,7 +121,7 @@ class DCGAN(object):
     self.mse_loss = tf.sqrt(tf.reduce_mean(tf.pow(tf.subtract(self.gtInputs, self.G), 2)))
     
     self.d_loss = self.d_loss_real + self.d_loss_fake
-    self.g_loss = 0.3 * self.g_loss_real + 0.7 * self.mse_loss
+    self.g_loss = 0.02 * self.g_loss_real + 0.9 * self.mse_loss
     
     self.d_loss_real_sum = scalar_summary("d_loss_real", self.d_loss_real)
     self.d_loss_fake_sum = scalar_summary("d_loss_fake", self.d_loss_fake)
@@ -278,20 +282,6 @@ class DCGAN(object):
             h1, [self.batch_size, s_h, s_w, self.c_dim], name='g_h3_deconv', with_w=True)
 
         return tf.nn.tanh(h2)
-        
-  def load_gt_data(self):
-    X = np.load(self.ground_truth_path)
-    seed = 2547
-    np.random.seed(seed)
-    np.random.shuffle(X)
-    return X
-  def load_adv_data(self):
-    X = np.load(self.adversarial_path)
-    seed = 2547
-    np.random.seed(seed)
-    np.random.shuffle(X)
-    return X
-    
   @property
   def model_dir(self):
     return "{}_{}_{}_{}".format(

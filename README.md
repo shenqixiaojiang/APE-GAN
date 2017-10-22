@@ -26,7 +26,13 @@ Or, you can use your own data by change the path of numpy. If you use the cifar1
 
 For example:
 
+To train a model with cifar10:
+    
     $ python main.py --epoch=5 --dataset=cifar10 --input_height=32 --output_height=32 --train=True --adversarial_path=./data/cifarAdv.npy --ground_truth_path=./data/cifarGt.npy
+
+To test with an existing model on the cifar10:
+
+    $ python main.py --dataset=cifar10 --input_height=32 --output_height=32 --test_path=advCifar-samples.npy  --save_path=resAPE-GAN_cifar.npy 
 
 It is noteworthy that the adversarial samples cannot be
 saved in the form of picture, since discretizing the values
